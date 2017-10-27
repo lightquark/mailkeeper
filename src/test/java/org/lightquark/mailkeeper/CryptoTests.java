@@ -29,7 +29,7 @@ public class CryptoTests
     private CryptoUtils cryptoUtils;
 
     @Test
-    public void base()
+    public void base() throws Exception
     {
         String key = "0123456789ABCDEF"; // 128 bit key
         String initVector = "RandomInitVector"; // 16 bytes IV
@@ -46,11 +46,12 @@ public class CryptoTests
         catch (Exception e)
         {
             System.out.println(e.getMessage() + "\n" + ExceptionUtils.getStackTrace(e));
+            throw new Exception(e);
         }
     }
 
     @Test
-    public void cryptoParams()
+    public void cryptoParams() throws Exception
     {
         try
         {
@@ -64,6 +65,7 @@ public class CryptoTests
         catch (Exception e)
         {
             System.out.println(e.getMessage() + "\n" + ExceptionUtils.getStackTrace(e));
+            throw new Exception(e);
         }
     }
 }
