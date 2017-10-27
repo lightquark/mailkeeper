@@ -6,7 +6,8 @@ import org.apache.logging.log4j.Logger;
 import org.lightquark.mailkeeper.config.MailConfig;
 import org.lightquark.mailkeeper.crypto.CryptoParams;
 import org.lightquark.mailkeeper.crypto.CryptoUtils;
-import org.lightquark.mailkeeper.logging.LoggingUtils;
+import org.lightquark.mailkeeper.util.ConfigUtils;
+import org.lightquark.mailkeeper.util.LoggingUtils;
 import org.lightquark.mailkeeper.mail.MailController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,6 +42,8 @@ public class MailkeeperApplication implements CommandLineRunner
     private ApplicationContext context;
     @Autowired
     private CryptoUtils cryptoUtils;
+    @Autowired
+    private ConfigUtils configUtils;
 
     public static void main(String[] args)
     {
@@ -74,13 +77,13 @@ public class MailkeeperApplication implements CommandLineRunner
         if (command.equals(AppCommand.CHECK))
         {
             LOG.info("Start decryption ...");
-            CryptoParams cp = cryptoUtils.readCryptoParams(keyFilePath);
+            CryptoParams cp = cryptoUtils.readCryptoParams(configUtils.getFullFileName(keyFilePath));
             if (cp == null)
             {
                 LOG.error("ERROR: Error loading crypto params.");
                 return;
             }
-            String encrypted = cryptoUtils.decryptFile(encryptedConfigFilePath, cp.getKey(), cp.getInitVector());
+            String encrypted = cryptoUtils.decryptFile(configUtils.getFullFileName(encryptedConfigFilePath), cp.getKey(), cp.getInitVector());
             LOG.info("Decryption completed.");
 
             LOG.info("Loading config ...");
@@ -99,13 +102,13 @@ public class MailkeeperApplication implements CommandLineRunner
         else if (command.equals(AppCommand.ENCRYPT))
         {
             LOG.info("Start encryption ...");
-            CryptoParams cp = cryptoUtils.readCryptoParams(keyFilePath);
+            CryptoParams cp = cryptoUtils.readCryptoParams(configUtils.getFullFileName(keyFilePath));
             if (cp == null)
             {
                 LOG.error("ERROR: Error loading crypto params.");
                 return;
             }
-            cryptoUtils.encryptFile(configFilePath, encryptedConfigFilePath, cp.getKey(), cp.getInitVector());
+            cryptoUtils.encryptFile(configUtils.getFullFileName(configFilePath), configUtils.getFullFileName(encryptedConfigFilePath), cp.getKey(), cp.getInitVector());
             LOG.info("Encryption completed.");
         }
 
@@ -137,5 +140,11 @@ public class MailkeeperApplication implements CommandLineRunner
     public CryptoUtils getCryptoUtils() throws NoSuchAlgorithmException, NoSuchPaddingException
     {
         return new CryptoUtils();
+    }
+
+    @Bean
+    public ConfigUtils getConfigUtils()
+    {
+        return new ConfigUtils();
     }
 }

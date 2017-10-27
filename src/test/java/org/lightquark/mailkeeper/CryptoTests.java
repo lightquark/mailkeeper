@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.lightquark.mailkeeper.crypto.CryptoParams;
 import org.lightquark.mailkeeper.crypto.CryptoUtils;
+import org.lightquark.mailkeeper.util.ConfigUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +28,8 @@ public class CryptoTests
 
     @Autowired
     private CryptoUtils cryptoUtils;
+    @Autowired
+    private ConfigUtils configUtils;
 
     @Test
     public void base() throws Exception
@@ -55,7 +58,7 @@ public class CryptoTests
     {
         try
         {
-            CryptoParams cp = cryptoUtils.readCryptoParams(keyFilePath);
+            CryptoParams cp = cryptoUtils.readCryptoParams(configUtils.getFullFileName(keyFilePath));
 
             Assert.assertNotNull(cp);
             Assert.assertNotNull(cp.getKey());

@@ -1,4 +1,4 @@
-package org.lightquark.mailkeeper.logging;
+package org.lightquark.mailkeeper.util;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
