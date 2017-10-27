@@ -1,7 +1,9 @@
 # Welcome to Mail Keeper
 
 Mail Keeper is a robot that automatically checks mailboxes and sends emails to each other.
+
 It uses encrypted configuration XML-file in which is described mailboxes settings.
+
 
 ## Configuration XML-file
 
@@ -13,9 +15,12 @@ Path to XML-file that is describes crypto parameters is in `application.properti
 
 All these files should be stored in the safe place protected by the operating system.
 
+#### Examples
 Examples of these configuration files are stored in `.config_sample` directory.
 
+#### Internal structure
 An internal structure of configuration XML-file is simple. There are two entities: `mailbox` and `provider`. Mailbox describes parameters specific to the mailbox. Provider describes parameters that required to connect to the mail provider.
+
 
 ## How to use
 
@@ -25,6 +30,7 @@ The first argument is a command that describes what application should do. Allow
 
 The second argument is log level. Allowed values are `ERROR`, `WARN`, `INFO`, `DEBUG`, `ALL`.
 
+#### Examples
 At example, to run the application with maximal log level, you should execute the following command:
 ```
 java -jar mailkeeper.jar check ALL
