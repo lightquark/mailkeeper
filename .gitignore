@@ -1,6 +1,10 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
 
+### MailKeeper ###
+.config
+!.config_sample
+
 ### STS ###
 .apt_generated
 .classpath

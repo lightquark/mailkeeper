@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config>
+
+	<provider id="hotmail">
+		<host>smtp.live.com</host>
+		<port>587</port>
+		<protocol>smtp</protocol>
+		<prop key="mail.transport.protocol">smtp</prop>
+		<prop key="mail.smtp.auth">true</prop>
+		<prop key="mail.smtp.starttls.enable">true</prop>
+		<prop key="mail.smtp.starttls.required">true</prop>
+		<prop key="mail.smtp.socketFactory.port">587</prop>
+		<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+		<prop key="mail.smtp.socketFactory.fallback">true</prop>
+		<prop key="mail.smtp.debug">true</prop>
+		<prop key="mail.debug">true</prop>
+	</provider>
+	<provider id="gmail">
+		<host>smtp.gmail.com</host>
+		<port>587</port>
+		<protocol>smtp</protocol>
+		<prop key="mail.transport.protocol">smtp</prop>
+		<prop key="mail.smtp.auth">true</prop>
+		<prop key="mail.smtp.starttls.enable">true</prop>
+		<prop key="mail.smtp.starttls.required">true</prop>
+		<prop key="mail.smtp.socketFactory.port">587</prop>
+		<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+		<prop key="mail.smtp.socketFactory.fallback">true</prop>
+		<prop key="mail.smtp.debug">true</prop>
+		<prop key="mail.debug">true</prop>
+	</provider>
+	<provider id="ukrnet">
+		<host>smtp.ukr.net</host>
+		<port>465</port>
+		<protocol>smtp</protocol>
+		<prop key="mail.transport.protocol">smtp</prop>
+		<prop key="mail.smtp.auth">true</prop>
+		<prop key="mail.smtp.starttls.enable">true</prop>
+		<prop key="mail.smtp.starttls.required">true</prop>
+		<prop key="mail.smtp.socketFactory.port">465</prop>
+		<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+		<prop key="mail.smtp.socketFactory.fallback">true</prop>
+		<prop key="mail.smtp.debug">true</prop>
+		<prop key="mail.debug">true</prop>
+	</provider>
+	
+	<mailbox provider="hotmail" user="username@hotmail.com" pass="strongpassword" />
+	<mailbox provider="gmail" user="username1@gmail.com" pass="strongpassword" />
+	<mailbox provider="gmail" user="username2@gmail.com" pass="strongpassword" />
+	<mailbox provider="ukrnet" user="username@ukr.net" pass="strongpassword" />
+
+</config>
