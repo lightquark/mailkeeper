@@ -22,6 +22,6 @@ public class ConfigUtils
 
     public String getFullFileName(String fileName)
     {
-        return (userDir + fileName).replace('/', File.separatorChar);
+        return (userDir + fileName).replace('/', File.separatorChar).replace('\\', File.separatorChar);
     }
 }
