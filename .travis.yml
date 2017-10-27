@@ -3,6 +3,8 @@ language: java
 jdk:
  - oraclejdk8
 install:
+ - cp -R .config_sample .config/
  - mvn --errors clean install
 script:
+ - cp -R .config_sample .config/
  - mvn --errors clean install
